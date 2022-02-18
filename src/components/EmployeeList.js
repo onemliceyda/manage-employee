@@ -23,7 +23,7 @@ const EmployeeList = () => {
                 </tr>
             </thead>
             <tbody>
-                <Employee />
+                <Employee employees={employees}/>
             </tbody>
         </table>
     )
