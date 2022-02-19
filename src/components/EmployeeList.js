@@ -1,22 +1,18 @@
-import { useState } from "react";
 import Employee from "./Employee";
 import { Button } from "react-bootstrap"
 import { Modal } from "react-bootstrap";
 import AddForm from "./AddForm"
+import { useContext,useState} from "react";
+import { EmployeeContext } from "../contexts/EmployeeContext";
 
 const EmployeeList = () => {
 
-    const [show,setShow]=useState(false);
-    const handleClose=()=>setShow(false);
-   const handleShow=()=>setShow(true);
+    const { employees } = useContext(EmployeeContext)
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-    const [employees, setEmployess] = useState([
-        { id: 1, name: 'Thomas Hardy', email: 'thomashardy@mail.com', address: '89 Chiaroscuro Rd, Portland, USA', phone: '(171) 555-2222' },
-        { id: 2, name: 'Dominique Perrier', email: 'dominiqueperrier@mail.com', address: 'Obere Str. 57, Berlin, Germany', phone: '(313) 555-5735' },
-        { id: 3, name: 'Maria Anders', email: 'mariaanders@mail.com', address: '25, rue Lauriston, Paris, France', phone: '(503) 555-9931' },
-        { id: 4, name: 'Fran Wilson', email: 'franwilson@mail.com', address: 'C/ Araquil, 67, Madrid, Spain', phone: '(204) 619-5731' },
-        { id: 5, name: 'Martin Blank', email: 'martinblank@mail.com', address: 'Via Monte Bianco 34, Turin, Italy', phone: '(480) 631-2097' }
-    ])
+
 
     return (
 
@@ -47,7 +43,7 @@ const EmployeeList = () => {
                 </tbody>
             </table>
 
-         <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
                     <Modal.Title>
                         Add Employee
@@ -58,11 +54,11 @@ const EmployeeList = () => {
                     <AddForm />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}> 
-                    Close Button
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close Button
                     </Button>
                 </Modal.Footer>
-            </Modal> 
+            </Modal>
         </>
     )
 }
