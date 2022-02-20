@@ -12,9 +12,18 @@ const EmployeeList = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    useEffect(()=>{
+    useEffect(() => {
         handleClose();
-    },[employees])
+    }, [employees])
+
+
+
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+       console.log("component rendered");
+      },[employees]);
+    
 
 
     return (
@@ -62,6 +71,7 @@ const EmployeeList = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+           
         </>
     )
 }

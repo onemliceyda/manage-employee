@@ -41,6 +41,7 @@ body {
 	outline: none !important;
 	margin-left: 10px;
 }
+
 .table-title .btn i {
 	float: left;
 	font-size: 21px;
@@ -57,7 +58,7 @@ table.table tr th, table.table tr td {
 }
 
 table.table tr th:last-child {
-	width: 100px;
+	width: 150px;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fcfcfc;
@@ -122,7 +123,7 @@ table.table .avatar {
 	background: #03A9F4;
 }
 .pagination li.active a:hover {        
-	background: #0397d6;
+	background: #0397dff6;
 }
 .pagination li.disabled i {
 	color: #ccc;
@@ -166,6 +167,7 @@ table.table .avatar {
 .modal .btn {
 	border-radius: 2px;
 	min-width: 100px;
+	
 }	
 .modal form label {
 	font-weight: normal;

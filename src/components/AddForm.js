@@ -1,6 +1,6 @@
 import { Form,Button} from "react-bootstrap";
 import { EmployeeContext } from "../contexts/EmployeeContext";
-import { useContext } from "react"; 
+import { useContext, useEffect } from "react"; 
 import { useState } from "react";
 
 
@@ -25,6 +25,7 @@ const AddForm = () => {
         e.preventDefault();
         addEmployee(name,email,address,phone);
     })
+
 
 
 
