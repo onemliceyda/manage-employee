@@ -44,7 +44,7 @@ const EmployeeList = () => {
             </table>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
+                <Modal.Header className="modal-header" closeButton >
                     <Modal.Title>
                         Add Employee
                     </Modal.Title>
@@ -55,7 +55,7 @@ const EmployeeList = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close Button
+                        Close Modal
                     </Button>
                 </Modal.Footer>
             </Modal>
