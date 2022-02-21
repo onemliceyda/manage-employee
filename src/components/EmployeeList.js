@@ -1,5 +1,5 @@
 import Employee from "./Employee";
-import { Button } from "react-bootstrap"
+import { Button, Alert } from "react-bootstrap"
 import { Modal } from "react-bootstrap";
 import AddForm from "./AddForm"
 import { useContext, useEffect, useState } from "react";
@@ -7,23 +7,30 @@ import { EmployeeContext } from "../contexts/EmployeeContext";
 
 const EmployeeList = () => {
 
-    const { employees } = useContext(EmployeeContext)
+    const { employees } = useContext(EmployeeContext);
+
+    const [showAlert, setShowAlert] = useState(false);
+
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    // const handleShowAlert = () => setShowAlert(true)
+    const handleShowAlert=()=>{
+        setShowAlert(true);
+        setTimeout(()=>{
+            setShowAlert(false);
+        },2000);
+
+    }; //Öncelikle bize mesajı göstermesini istiyoruz.Ardından alert mesajının belirli bir süre sonunda kaybolmasını istiyoruz bu yüzden de setTimeout metodunu kullandık.
 
     useEffect(() => {
         handleClose();
+        return ()=>{
+            handleShowAlert(); //modalda bir değişiklik olduğunda alert mesajının gelmesini sağlar.Bu callback fonksiyonu da return oldu.
+        }
     }, [employees])
 
-
-
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-       console.log("component rendered");
-      },[employees]);
-    
 
 
     return (
@@ -40,6 +47,13 @@ const EmployeeList = () => {
                     </div>
                 </div>
             </div>
+
+            <Alert show={showAlert} variant="secondary" >
+                Employee List Successfully Updated!
+            </Alert>
+
+
+
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -51,13 +65,13 @@ const EmployeeList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                   {
-                       employees.map((employee)=>(
-                        <tr key={employee.id}>
-                            <Employee employee ={employee} /> 
+                    {
+                        employees.sort((a, b) => (a.name < b.name ? -1 : 1)).map((employee) => (
+                            <tr key={employee.id}>
+                                <Employee employee={employee} />
                             </tr>
-                       ))
-                   }
+                        ))
+                    }
                 </tbody>
             </table>
 
@@ -77,10 +91,16 @@ const EmployeeList = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-           
+
         </>
     )
 }
 
 
 export default EmployeeList;
+
+
+
+
+//.sort((a, b) => a.name.localeCompare(b.name)) ->name'e göre sıralama yaparken kullandık
+//.sort((a, b) => (a.name < b.name ? -1 : 1)) 
