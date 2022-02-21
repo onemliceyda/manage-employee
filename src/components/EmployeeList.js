@@ -14,31 +14,31 @@ const EmployeeList = () => {
 
 
     const [show, setShow] = useState(false);
-    const[currentPage,setCurrentPage]=useState(1)
-    const[employeesPerPage]=useState(2)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [employeesPerPage] = useState(2)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     // const handleShowAlert = () => setShowAlert(true)
-    const handleShowAlert=()=>{
+    const handleShowAlert = () => {
         setShowAlert(true);
-        setTimeout(()=>{
+        setTimeout(() => {
             setShowAlert(false);
-        },2000);
+        }, 2000);
 
     }; //Öncelikle bize mesajı göstermesini istiyoruz.Ardından alert mesajının belirli bir süre sonunda kaybolmasını istiyoruz bu yüzden de setTimeout metodunu kullandık.
 
     useEffect(() => {
         handleClose();
-        return ()=>{
+        return () => {
             handleShowAlert(); //modalda bir değişiklik olduğunda alert mesajının gelmesini sağlar.Bu callback fonksiyonu da return oldu.
         }
     }, [sortedEmployees])
 
 
-    const indexOfLastEmployee=currentPage*employeesPerPage; //Son çalışanı bulmaya yarar.
-    const indexOfFirstEmployee=indexOfLastEmployee-employeesPerPage;
-    const currentEmployees=sortedEmployees.slice(indexOfFirstEmployee,indexOfLastEmployee)
-    const totalPagesNum=Math.ceil(sortedEmployees.length/employeesPerPage)
+    const indexOfLastEmployee = currentPage * employeesPerPage; //Son çalışanı bulmaya yarar.
+    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+    const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee)
+    const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage)
 
     return (
 
@@ -81,7 +81,17 @@ const EmployeeList = () => {
                     }
                 </tbody>
             </table>
-                    <Pagination pages={totalPagesNum} setCurrentPage={setCurrentPage}/>
+
+
+            <Pagination
+                pages={totalPagesNum}
+                setCurrentPage={setCurrentPage} 
+                currentEmployees={currentEmployees}
+                sortedEmployees={sortedEmployees}
+                />
+                
+
+
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="modal-header" closeButton >
                     <Modal.Title>
