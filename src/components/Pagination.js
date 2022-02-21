@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
-const Pagination = () => {
+const Pagination = ({pages,setCurrentPage}) => {
 
-    const pages = 5;
+   
     const numOfPages = [];
     for (let i = 1; i <= pages; i++) {
         numOfPages.push(i);
@@ -12,6 +12,10 @@ const Pagination = () => {
 
     const [currentButton, setCurrentButton] = useState(1);
 
+
+    useEffect(()=>{
+        setCurrentPage(currentButton)
+    },[currentButton,setCurrentPage])
 
 
 
