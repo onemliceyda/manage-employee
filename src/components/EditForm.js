@@ -8,7 +8,7 @@ const EditForm = ({ theEmployee }) => {
     //Birinci yöntem:tablodaki her bir form elemanı ayrı bir state olarak görmek.
     //Her birinin değişimnde state değişiyor demek.Hangi değişiklik oluyorsa o fonk üzerinde çalışırız ve değişiklik gerçekleşir.
 
-    const { updateEmployee } = useContext(EmployeeContext);
+    const { dispatch } = useContext(EmployeeContext);
     const employee = theEmployee;
     const id = employee.id;
 
@@ -21,7 +21,8 @@ const EditForm = ({ theEmployee }) => {
 
     const handleSubmit=(e)=>{  
         e.preventDefault();
-        updateEmployee(id,updatedEmployee);
+        /*updateEmployee(id,updatedEmployee);*/
+        dispatch({type:'update_employee',id,updatedEmployee})
     }
 
 

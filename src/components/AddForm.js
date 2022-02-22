@@ -9,7 +9,7 @@ const AddForm = () => {
     //Birinci yöntem:tablodaki her bir form elemanı ayrı bir state olarak görmek.
     //Her birinin değişimnde state değişiyor demek.Hangi değişiklik oluyorsa o fonk üzerinde çalışırız ve değişiklik gerçekleşir.
     
-    const {addEmployee}=useContext(EmployeeContext); 
+    const {dispatch}=useContext(EmployeeContext); 
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [address,setAddress]=useState("");
@@ -23,7 +23,12 @@ const AddForm = () => {
     
     const handleSubmit=(e=>{
         e.preventDefault();
-        addEmployee(name,email,address,phone);
+       /* addEmployee(name,email,address,phone); 
+       */
+    dispatch({type:"add_employee",employee:{
+        name,email,address,phone
+    }})
+        
     })
 
 
