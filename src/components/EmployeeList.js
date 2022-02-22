@@ -2,7 +2,7 @@ import Employee from "./Employee";
 import { Button, Alert } from "react-bootstrap"
 import { Modal } from "react-bootstrap";
 import AddForm from "./AddForm"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { EmployeeContext } from "../contexts/EmployeeContext";
 import Pagination from "./Pagination";
 
@@ -39,6 +39,25 @@ const EmployeeList = () => {
     const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
     const currentEmployees = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee)
     const totalPagesNum = Math.ceil(sortedEmployees.length / employeesPerPage)
+
+
+    /*const reducer=(state,action)=>{
+        switch(action.type){
+            case "increment":
+                return{count:state.count +1}
+            case "decrement": 
+            return{count: state.count-1}
+
+            default :
+            throw new Error();
+        }
+    }
+    const initialState={count:0};
+    const [state,dispatch]=useReducer(reducer,initialState)*/
+
+
+
+
 
     return (
 
@@ -90,7 +109,9 @@ const EmployeeList = () => {
                 sortedEmployees={sortedEmployees}
                 />
                 
-
+          {/*  Count:{state.count}
+            <button onClick={()=>dispatch({type:"increment"})}> + </button>
+                <button onClick={()=>dispatch({type:"decrement"})}> - </button> */}
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="modal-header" closeButton >
